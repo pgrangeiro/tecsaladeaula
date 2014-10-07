@@ -417,6 +417,12 @@ ROOT_URLCONF = 'timtec.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'timtec.wsgi.application'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_FAIL_SILENTLY = not DEBUG
+
+# because of flatui checkboxes and radio buttons
+CRISPY_CLASS_CONVERTERS = {'checkboxinput': '',
+                           'radioinput': ''}
 
 INSTALLED_APPS = (
     'django_extensions',
@@ -436,6 +442,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rosetta',
     'autoslug',
+    'crispy_forms',
     # TIM Tec
     'core',
     'accounts',
@@ -478,7 +485,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[timtec] "
-# ACCOUNT_SIGNUP_FORM_CLASS = 'core.forms.SignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'core.forms.SignupForm'
 SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
 TWITTER_CONSUMER_KEY = ''

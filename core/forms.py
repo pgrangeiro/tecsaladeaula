@@ -5,6 +5,9 @@ from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
+from crispy_forms.helper import FormHelper, Layout
+from crispy_forms.bootstrap import StrictButton
+
 from .models import Class
 import logging
 
@@ -38,8 +41,23 @@ class ContactForm(forms.Form):
 
 class SignupForm(forms.Form):
     accept_terms = forms.BooleanField(label=_('Accept '), initial=True, required=True)
+    helper = FormHelper()
+    helper.form_class = 'form-horizontal'
+    helper.label_class = 'col-md-4'
+    helper.field_class = 'col-md-8'
+    # helper['accept_terms'].wrap(HTML("<p>whatever</p>"))
+    # helper.layout = Layout(
+    #     'username',
+    #     'password1',
+    #     'password2',
+    #     'accept_terms',
+    #     StrictButton('Sign in', css_class='btn-default'),
+    # )
 
-    def save(self, user):
+    def init(self, *args, **kwargs):
+        super(self, SignupForm).init(*args, **kwargs)
+
+    def signup(self, request, user):
         user.accepted_terms = True
         user.save()
 
