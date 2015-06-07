@@ -162,7 +162,6 @@
         });
 
         $scope.twits = Twitter.query({});
-
     }]);
 
 })(angular);

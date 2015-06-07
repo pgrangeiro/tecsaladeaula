@@ -140,9 +140,6 @@
         return Course;
     }]);
 
-    app.factory('Enroll', function($resource){
-        return $resource('/api/enroll/', {}, {});
-    });
 
     /**
      * Basic model class to Professor
